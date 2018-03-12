@@ -43,7 +43,7 @@ def prep_buffer():
       if config.exploration == 1:
         action = action + agents[i].noise()
       if config.action_clip:
-        action = np.clip(action, -2, 2)
+        action = np.clip(action, -config.action_clip_mag, config.action_clip_mag)
       act_n.append(action)
     
     # take the action
@@ -90,7 +90,7 @@ def train():
         if config.exploration:
           action = action + agents[i].noise()
         if config.action_clip:
-          action = np.clip(action, -2, 2)
+          action = np.clip(action, -config.action_clip_mag, config.action_clip_mag)
         act_n.append(action)
       
       # take the action and store in the replay buffer
